@@ -11,11 +11,17 @@ For command details, see [README.md](./README.md). For OpenSpec commands, see [O
 You've just cloned a repo you've never seen before.
 
 ```
+Load the pre-propose skill and map this codebase for OpenSpec
+```
+Maps auth, routes, and models in one pass. Produces a structured summary and suggests `config.yaml` seed content. Saves key findings to memory.
+
+Alternatively, run the individual commands manually:
+
+```
 /repo-auth
 /repo-routes
 /repo-models
 ```
-Map the three pillars: who can do what, what endpoints exist, what the data looks like.
 
 ```
 /repo-errors
@@ -26,8 +32,6 @@ Audit error handling — find swallowed errors, empty catches, and debug leftove
 /repo-export
 ```
 Optional: create a reusable XML snapshot for handoff or another tool. Use `/repo-export-slim` for a smaller compressed version.
-
-Save key findings to memory so you don't re-derive them next session.
 
 ---
 
@@ -59,9 +63,9 @@ Research the implementation approach — `/gh-docs` combines official docs with 
 Implement in a **clean context window**. Works through `tasks.md` task by task.
 
 ```
-Load the spec-review skill and review the add-user-notification-preferences change
+Load the post-apply skill and review the add-user-notification-preferences change
 ```
-Two-pass review: verify tasks.md compliance + code quality audit (secrets, debug leftovers, empty catches).
+Combined quality gate: spec compliance + security scan + code quality audit. Produces a go/no-go verdict.
 
 ```
 /opsx:archive
@@ -111,9 +115,9 @@ Implement in a clean context.
 Validate completeness, correctness, and coherence against the artifacts.
 
 ```
-Load the spec-review skill and review the add-notification-preferences change
+Load the post-apply skill and review the add-notification-preferences change
 ```
-Catch debug leftovers, secrets, empty catches.
+Combined quality gate with go/no-go verdict. Catches spec gaps, security issues, and debug leftovers.
 
 ```
 /opsx:archive
@@ -124,6 +128,13 @@ Catch debug leftovers, secrets, empty catches.
 ## 4. Bug Fix
 
 Skip the full spec pipeline. Diagnose first, then minimal spec.
+
+```
+Load the debug-investigate skill and debug this error: user sessions are expiring too early even with valid tokens
+```
+Chains docs lookup, GitHub solutions, AST search, and error handling audit into a structured diagnosis.
+
+Alternatively, run individual investigation steps:
 
 ```
 /opsx:explore user sessions are expiring too early even with valid tokens
@@ -170,13 +181,9 @@ Skip `/opsx:verify` for small single-file fixes. Run it if the bug touched share
 You need to add something new to a codebase you didn't write.
 
 ```
-/repo-auth
-/repo-routes
-/repo-models
+Load the pre-propose skill and map this codebase for OpenSpec
 ```
-Map conventions before touching anything. Understand auth patterns, existing endpoints (avoid collisions), and data model.
-
-Seed `openspec/config.yaml` with what you found — architecture constraints, naming conventions, patterns. Every OpenSpec proposal will respect these.
+Maps auth, routes, and models. Produces a summary and suggests `config.yaml` seed content so every OpenSpec proposal respects the existing conventions.
 
 ```
 /opsx:propose add invoice export to PDF
@@ -200,9 +207,9 @@ Implement in a clean context.
 Validate completeness against the spec.
 
 ```
-Load the spec-review skill and review the add-invoice-export-to-pdf change
+Load the post-apply skill and review the add-invoice-export-to-pdf change
 ```
-Catch debug leftovers, hardcoded secrets, empty catches.
+Combined quality gate with go/no-go verdict.
 
 ```
 /opsx:archive
@@ -213,6 +220,13 @@ Catch debug leftovers, hardcoded secrets, empty catches.
 ## 6. Debugging a Production Error
 
 You have an error message or stack trace.
+
+```
+Load the debug-investigate skill and debug this error: TypeError: Cannot read properties of undefined (reading 'map')
+```
+Chains docs lookup, GitHub solutions, AST search, and error handling audit into a structured diagnosis with root cause hypothesis and suggested fix.
+
+Alternatively, run individual investigation steps:
 
 ```
 /c7-fix TypeError: Cannot read properties of undefined (reading 'map')
@@ -323,10 +337,10 @@ Before opening a PR, make sure the code is clean.
 ```
 Full audit: tech debt markers, debug leftovers, potential secrets, empty catches, missing return types. Fix everything flagged as Critical or High.
 
-If working with an OpenSpec change, verify all tasks are implemented:
+If working with an OpenSpec change, run the combined quality gate:
 
 ```
-Load the spec-review skill and review the current change
+Load the post-apply skill and prepare to archive
 ```
 
 ---

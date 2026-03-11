@@ -74,25 +74,39 @@ Context7 is expected as a separate plugin and is not bundled here.
 | `/repo-export [path]` | Export full repomix XML snapshot to disk |
 | `/repo-export-slim [path]` | Export compressed repomix XML snapshot to disk |
 
-## Skills
+## Skills (4)
 
-### spec-review
+| Skill | Description | When to use |
+|-------|-------------|-------------|
+| `pre-propose` | Map auth, routes, models and suggest config.yaml seed | Before first `/opsx:propose` on a new project |
+| `post-apply` | Combined quality gate: spec compliance + security + code quality → go/no-go | After `/opsx:apply`, before archiving |
+| `debug-investigate` | Structured debugging: docs + GitHub + AST + error audit → diagnosis | When debugging a specific error or symptom |
+| `spec-review` | Two-pass review: tasks.md compliance + code quality audit | Lighter alternative to `post-apply` (no security scan) |
 
-Post-implementation review that verifies OpenSpec `tasks.md` compliance and audits code quality.
+### Usage
 
 ```
+Load the pre-propose skill and map this codebase for OpenSpec
+Load the post-apply skill and review the add-dark-mode change
+Load the debug-investigate skill and debug this error: Cannot read properties of undefined
 Load the spec-review skill and review the add-dark-mode change
 ```
 
 ## Workflow
 
-See `CLAUDE.md` for the full workflow rules that get loaded into every session. Key flow:
+See `CLAUDE.md` for the full workflow rules that get loaded into every session. See `workflows.md` for 13 end-to-end workflow recipes. Key flow:
 
-1. Map the codebase: `/repo-auth`, `/repo-routes`, `/repo-models`
+1. Map the codebase: load the `pre-propose` skill (or run `/repo-auth`, `/repo-routes`, `/repo-models` manually)
 2. Propose changes with OpenSpec: `/opsx:propose`
-3. Implement: `/opsx:apply`
-4. Review: load the `spec-review` skill
+3. Implement: `/opsx:apply` (with TDD when tasks have testable criteria)
+4. Review: load the `post-apply` skill for go/no-go verdict
 5. Archive: `/opsx:archive`
+
+For debugging: load the `debug-investigate` skill with your error message.
+
+## Installation
+
+See [INSTALL.md](./INSTALL.md) for the full installation guide, including prerequisites, complementary plugins, and verification steps.
 
 ## License
 

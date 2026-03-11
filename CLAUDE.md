@@ -15,17 +15,40 @@
 ## OpenSpec workflow
 
 Before running `/opsx:propose` on an existing codebase:
-1. Run `/repo-auth`, `/repo-routes`, `/repo-models` to map what exists
-2. Save key findings to memory
-3. Seed `openspec/config.yaml` with architecture conventions before generating artifacts
+1. Load the `pre-propose` skill to map auth, routes, and models in one pass
+2. Review the summary and suggested `config.yaml` seed
+3. Save key findings to memory
+4. Seed `openspec/config.yaml` with architecture conventions before generating artifacts
 
 For bug fixes, skip the full spec pipeline: use `/opsx:explore` to diagnose first,
 then `/opsx:propose fix-<name>` with a minimal tasks.md (1-3 tasks).
 
 ## After implementing
 
-After `/opsx:apply`, load the spec-review skill and run it before archiving:
+After `/opsx:apply`, load the `post-apply` skill for a combined quality gate:
+"Load the post-apply skill and review the `<change-name>` change."
+
+This runs spec compliance + security scan + code quality audit and produces a go/no-go verdict.
+If GO, proceed to `/opsx:archive`. If NO-GO, fix the flagged items first.
+
+For a lighter review (spec compliance + code quality only, no security scan), use `spec-review` directly:
 "Load the spec-review skill and review the `<change-name>` change."
+
+## Debugging
+
+For structured debugging, load the `debug-investigate` skill:
+"Load the debug-investigate skill and debug this error: `<error message>`"
+
+This chains documentation lookup, GitHub solutions, AST search, and error handling audit into a single diagnosis.
+
+## TDD discipline
+
+During `/opsx:apply`, follow red-green-refactor when tasks.md has testable acceptance criteria:
+1. **Red** — Write a failing test for the task's acceptance criteria first
+2. **Green** — Implement the minimum code to make the test pass
+3. **Refactor** — Clean up only after green, without changing behavior
+
+This applies especially to tasks with clear input/output expectations. Skip TDD for pure config changes, migrations, or UI-only tasks where automated testing adds no value.
 
 ## Multi-step tasks
 
