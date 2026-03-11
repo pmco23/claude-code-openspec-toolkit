@@ -1,0 +1,7 @@
+{
+  "name": "openspec-toolkit",
+  "description": "OpenSpec development toolkit: AST search, GitHub code search, documentation lookup, codebase analysis, and spec review.",
+  "author": {
+    "name": "pemcoliveira"
+  }
+}
