@@ -1,14 +1,14 @@
 {
   "gh_grep": {
     "type": "http",
-    "url": "https://mcp.grep.app/mcp"
+    "url": "https://mcp.grep.app"
   },
   "ast-grep": {
-    "type": "stdio",
-    "command": ["sh", "-c", "docker run -i --rm -v \"$(pwd):/src\" mcp/ast-grep"]
+    "command": "sh",
+    "args": ["-c", "docker run -i --rm -v \"$(pwd):/src\" mcp/ast-grep"]
   },
   "repomix": {
-    "type": "stdio",
-    "command": ["npx", "-y", "repomix", "--mcp"]
+    "command": "npx",
+    "args": ["-y", "repomix", "--mcp"]
   }
 }
