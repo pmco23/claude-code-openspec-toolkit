@@ -9,7 +9,7 @@
     {
       "name": "openspec-toolkit",
       "description": "OpenSpec development toolkit: AST search, GitHub code search, documentation lookup, codebase analysis, spec review, and workflow guardrails.",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "author": {
         "name": "pemcoliveira"
       },
