@@ -4,19 +4,5 @@
   "version": "2.0.0",
   "author": {
     "name": "pemcoliveira"
-  },
-  "hooks": [
-    {
-      "event": "PreToolUse",
-      "path": "hooks/pre-apply-guard.md"
-    },
-    {
-      "event": "PreToolUse",
-      "path": "hooks/pre-archive-guard.md"
-    },
-    {
-      "event": "SessionStart",
-      "path": "hooks/session-context.sh"
-    }
-  ]
+  }
 }
