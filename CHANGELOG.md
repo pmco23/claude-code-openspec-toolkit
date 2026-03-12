@@ -4,15 +4,18 @@
 
 ### Added
 
-- `.claude-plugin/marketplace.json` — plugin is now installable as a marketplace source
-- Install command: `claude plugin install openspec-toolkit@pmco23/claude-code-openspec-toolkit`
+- Marketplace support — repo restructured as a proper marketplace following the `claude-plugins-official` layout
+- Plugin now lives in `plugins/openspec-toolkit/` with marketplace.json at root
+- Two-step install: `claude plugin marketplace add pmco23/claude-code-openspec-toolkit` then `claude plugin install openspec-toolkit@openspec-toolkit`
 
 ### Fixed
 
+- Hooks moved from invalid `plugin.json` format to standard `hooks/hooks.json` with proper `type: "prompt"` and `type: "command"` entries
 - All complementary plugin install commands now use correct `@claude-plugins-official` marketplace format (was using stale `github:` URLs)
 - OpenSpec repo URL corrected to `Fission-AI/OpenSpec` across all docs
 - Node.js version requirement updated to `20.19.0+` (was `18+`)
 - Context7 install format corrected to `context7@claude-plugins-official`
+- OpenSpec CLI install section moved after plugin installs in INSTALL.md
 
 ## 1.0.0 — 2026-03-12
 
