@@ -6,7 +6,7 @@ Opinionated Claude Code plugin for spec-driven development with [OpenSpec](https
 
 - **Node.js** 20.19.0+ (for repomix and context7 via npx)
 - **Docker** (for ast-grep MCP server)
-- **context7 plugin** installed separately (`claude plugin install github:anthropics/context7` or equivalent)
+- **context7 plugin** installed separately (`claude plugin install context7@claude-plugins-official` or equivalent)
 
 ## Installation
 

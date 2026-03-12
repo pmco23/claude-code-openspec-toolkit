@@ -67,7 +67,7 @@ These plugins integrate well with the OpenSpec workflow. They are optional but r
 6 specialized review agents for granular post-implementation review. Complements the `spec-review` and `post-apply` skills.
 
 ```bash
-claude plugin install github:nichochar/pr-review-toolkit
+claude plugin install pr-review-toolkit@claude-plugins-official
 ```
 
 **What it adds**: `/pr-review`, silent-failure-hunter agent, pr-test-analyzer agent, error-handling reviewer, type reviewer, code-quality reviewer, simplification reviewer.
@@ -79,7 +79,7 @@ claude plugin install github:nichochar/pr-review-toolkit
 PreToolUse hook that passively detects 9 security anti-patterns during implementation.
 
 ```bash
-claude plugin install github:anthropics/claude-code-security-guidance
+claude plugin install security-guidance@claude-plugins-official
 ```
 
 **What it adds**: Automatic warnings during `/opsx:apply` when code contains command injection, XSS, eval, pickle, os.system, and other security risks.
@@ -91,7 +91,7 @@ claude plugin install github:anthropics/claude-code-security-guidance
 Post-review cleanup agent that simplifies code without changing behavior.
 
 ```bash
-claude plugin install github:anthropics/claude-code-code-simplifier
+claude plugin install code-simplifier@claude-plugins-official
 ```
 
 **What it adds**: `/simplify` command for cleaning up code after review.
@@ -137,7 +137,7 @@ claude plugin install pyright-lsp@claude-plugins-official
 Commit workflow shortcuts.
 
 ```bash
-claude plugin install github:anthropics/claude-code-commit-commands
+claude plugin install commit-commands@claude-plugins-official
 ```
 
 **What it adds**: `/commit`, `/commit-push-pr`, `/clean_gone`
@@ -147,7 +147,7 @@ claude plugin install github:anthropics/claude-code-commit-commands
 Library documentation lookup (required by `/c7-docs` and `/c7-fix`).
 
 ```bash
-claude plugin install github:anthropics/context7
+claude plugin install context7@claude-plugins-official
 ```
 
 **What it adds**: context7 MCP server for resolving library docs.
