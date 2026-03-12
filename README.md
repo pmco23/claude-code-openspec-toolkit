@@ -20,7 +20,7 @@ claude plugin install openspec-toolkit@pmco23/claude-code-openspec-toolkit
 
 ```bash
 git clone https://github.com/pmco23/claude-code-openspec-toolkit.git
-claude plugin install /path/to/claude-code-openspec-toolkit
+claude plugin install /path/to/claude-code-openspec-toolkit/plugins/openspec-toolkit
 ```
 
 ## MCP Servers

@@ -13,7 +13,7 @@
       "author": {
         "name": "pemcoliveira"
       },
-      "source": ".",
+      "source": "./plugins/openspec-toolkit",
       "category": "development",
       "homepage": "https://github.com/pmco23/claude-code-openspec-toolkit",
       "keywords": ["openspec", "ast-grep", "code-search", "spec-driven", "tdd", "code-review"]
