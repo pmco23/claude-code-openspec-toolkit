@@ -40,22 +40,6 @@ claude /help
 
 You should see `/ast`, `/repo-auth`, `/c7-docs`, `/gh-fix`, and other toolkit commands listed.
 
-## Install OpenSpec CLI (Required)
-
-The toolkit complements the [OpenSpec](https://github.com/Fission-AI/OpenSpec) CLI. Install it globally:
-
-```bash
-npm install -g @fission-ai/openspec@latest
-```
-
-Verify the installation and initialize in your project:
-
-```bash
-openspec --version
-cd your-project
-openspec init
-```
-
 ## Recommended Complementary Plugins
 
 These plugins integrate well with the OpenSpec workflow. They are optional but recommended.
@@ -151,6 +135,22 @@ claude plugin install context7@claude-plugins-official
 ```
 
 **What it adds**: context7 MCP server for resolving library docs.
+
+## Install OpenSpec CLI (Required)
+
+The toolkit complements the [OpenSpec](https://github.com/Fission-AI/OpenSpec) CLI. Install it globally:
+
+```bash
+npm install -g @fission-ai/openspec@latest
+```
+
+Verify the installation and initialize in your project:
+
+```bash
+openspec --version
+cd your-project
+openspec init
+```
 
 ## Verify Installation
 
