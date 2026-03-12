@@ -19,17 +19,17 @@ gh auth status    # must be authenticated
 
 ## Install the OpenSpec Toolkit Plugin
 
-From a local clone:
+From GitHub (marketplace):
 
 ```bash
-git clone https://github.com/pemcoliveira/claude-code-openspec-toolkit.git
-claude plugin install ./claude-code-openspec-toolkit
+claude plugin install openspec-toolkit@pmco23/claude-code-openspec-toolkit
 ```
 
-Or directly from GitHub:
+Or from a local clone:
 
 ```bash
-claude plugin install github:pemcoliveira/claude-code-openspec-toolkit
+git clone https://github.com/pmco23/claude-code-openspec-toolkit.git
+claude plugin install ./claude-code-openspec-toolkit
 ```
 
 After installation, verify with:

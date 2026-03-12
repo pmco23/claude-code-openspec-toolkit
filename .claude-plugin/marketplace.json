@@ -1,0 +1,22 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "openspec-toolkit",
+  "description": "OpenSpec development toolkit: AST search, GitHub code search, documentation lookup, codebase analysis, spec review, and workflow guardrails.",
+  "owner": {
+    "name": "pemcoliveira"
+  },
+  "plugins": [
+    {
+      "name": "openspec-toolkit",
+      "description": "OpenSpec development toolkit: AST search, GitHub code search, documentation lookup, codebase analysis, spec review, and workflow guardrails.",
+      "version": "1.0.0",
+      "author": {
+        "name": "pemcoliveira"
+      },
+      "source": ".",
+      "category": "development",
+      "homepage": "https://github.com/pmco23/claude-code-openspec-toolkit",
+      "keywords": ["openspec", "ast-grep", "code-search", "spec-driven", "tdd", "code-review"]
+    }
+  ]
+}
