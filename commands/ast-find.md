@@ -1,5 +1,6 @@
 ---
 description: Find all definitions, calls, and imports of a symbol
+argument-hint: "<symbol name>"
 allowed-tools: ["mcp__ast-grep__*"]
 ---
 

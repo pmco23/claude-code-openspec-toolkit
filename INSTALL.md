@@ -4,14 +4,14 @@
 
 | Requirement | Version | Why |
 |-------------|---------|-----|
-| **Node.js** | 18+ | Runs repomix and context7 via npx |
+| **Node.js** | 20.19.0+ | Required by OpenSpec CLI; also runs repomix and context7 via npx |
 | **Docker** | Any recent | Runs the ast-grep MCP server |
 | **GitHub CLI** (`gh`) | 2.0+ | Used by gh_grep for authenticated searches |
 
 Verify prerequisites:
 
 ```bash
-node --version    # v18+
+node --version    # v20.19.0+
 docker --version  # any
 gh --version      # 2.0+
 gh auth status    # must be authenticated
@@ -40,12 +40,20 @@ claude /help
 
 You should see `/ast`, `/repo-auth`, `/c7-docs`, `/gh-fix`, and other toolkit commands listed.
 
-## Install OpenSpec (Required)
+## Install OpenSpec CLI (Required)
 
-The toolkit complements the [OpenSpec](https://github.com/openspec-dev/openspec) plugin. Install it if you haven't:
+The toolkit complements the [OpenSpec](https://github.com/Fission-AI/OpenSpec) CLI. Install it globally:
 
 ```bash
-claude plugin install github:openspec-dev/openspec
+npm install -g @fission-ai/openspec@latest
+```
+
+Verify the installation and initialize in your project:
+
+```bash
+openspec --version
+cd your-project
+openspec init
 ```
 
 ## Recommended Complementary Plugins
@@ -89,6 +97,38 @@ claude plugin install github:anthropics/claude-code-code-simplifier
 **What it adds**: `/simplify` command for cleaning up code after review.
 
 **OpenSpec phase**: Review/Archive — run after `post-apply` passes as a final polish step.
+
+#### LSP Code Intelligence
+
+Claude Code LSP plugins give Claude real-time diagnostics, go-to-definition, and find-references — enhancing code review, debugging, and implementation. After each edit, the language server reports errors and warnings automatically, so Claude catches type errors, missing imports, and syntax issues without running a compiler.
+
+**Two-step install**: install the language server binary, then install the plugin.
+
+| Language | Plugin | Binary required | Install binary |
+|----------|--------|-----------------|----------------|
+| TypeScript | `typescript-lsp` | `typescript-language-server` | `npm install -g typescript-language-server typescript` |
+| Python | `pyright-lsp` | `pyright-langserver` | `pip install pyright` or `npm install -g pyright` |
+| Go | `gopls-lsp` | `gopls` | `go install golang.org/x/tools/gopls@latest` |
+| Rust | `rust-analyzer-lsp` | `rust-analyzer` | [rust-analyzer install guide](https://rust-analyzer.github.io/manual.html#installation) |
+| Java | `jdtls-lsp` | `jdtls` | [Eclipse JDT.LS](https://github.com/eclipse-jdtls/eclipse.jdt.ls) |
+| PHP | `php-lsp` | `intelephense` | `npm install -g intelephense` |
+| C/C++ | `clangd-lsp` | `clangd` | Install via your system package manager |
+| C# | `csharp-lsp` | `csharp-ls` | `dotnet tool install -g csharp-ls` |
+| Kotlin | `kotlin-lsp` | `kotlin-language-server` | [kotlin-language-server releases](https://github.com/fwcd/kotlin-language-server) |
+| Lua | `lua-lsp` | `lua-language-server` | [lua-language-server releases](https://github.com/LuaLS/lua-language-server) |
+| Swift | `swift-lsp` | `sourcekit-lsp` | Included with Swift toolchain |
+
+Install plugins from the official marketplace:
+
+```bash
+claude plugin install typescript-lsp@claude-plugins-official
+claude plugin install pyright-lsp@claude-plugins-official
+# repeat for each language you use
+```
+
+**OpenSpec phase**: All phases — diagnostics fire automatically during `/opsx:apply` and review. Code navigation enhances `debug-investigate` and `pre-propose` codebase mapping.
+
+> **Tip**: Use `--scope project` to share LSP plugin configuration with your team.
 
 ### Tier 2 — Useful Additions
 

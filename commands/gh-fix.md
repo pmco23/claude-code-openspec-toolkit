@@ -1,5 +1,6 @@
 ---
 description: Find real-world solutions to an error or problem on GitHub
+argument-hint: "<error message>"
 allowed-tools: ["mcp__gh_grep__*"]
 ---
 

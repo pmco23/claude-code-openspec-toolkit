@@ -1,5 +1,6 @@
 ---
 description: Find docs to fix the current error via Context7
+argument-hint: "<error message>"
 allowed-tools: ["mcp__context7__*"]
 ---
 

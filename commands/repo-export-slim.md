@@ -1,16 +1,14 @@
 ---
 description: Export a compressed repomix XML snapshot to disk
-allowed-tools: ["Bash"]
+argument-hint: "[output path]"
+allowed-tools: ["mcp__repomix__*"]
 ---
 
-Export the current working directory with the Repomix CLI in compressed mode.
+Export the current working directory using the repomix MCP tool `pack_codebase` in compressed mode.
 
-If `$ARGUMENTS` is provided, use it as the output path; otherwise default to `./repomix-output-slim.xml`.
+Call `pack_codebase` with:
+- `directory`: the current working directory (absolute path)
+- `compress`: true
+- `style`: "xml"
 
-Ensure the destination directory exists, then run:
-
-```
-npx -y repomix@latest --compress --style xml -o <path>
-```
-
-Report the final output path and the key metrics from the Repomix CLI summary, including any visible compression savings.
+Report the output file path and the key metrics (total files, total tokens) from the response, including any compression savings.

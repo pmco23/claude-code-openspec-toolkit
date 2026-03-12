@@ -1,6 +1,6 @@
 ---
 name: pre-propose
-description: Structured codebase mapping before proposing an OpenSpec change. Runs repo-auth, repo-routes, repo-models in sequence, summarizes findings, and suggests openspec/config.yaml seed content. Use before first /opsx:propose on a new or unfamiliar project, or when asked to "map this codebase for OpenSpec".
+description: This skill maps a codebase's auth, routes, and models before proposing an OpenSpec change. It uses ast-grep and Grep to discover architecture conventions and suggests openspec/config.yaml seed content. This skill should be used before the first /opsx:propose on a new or unfamiliar project, when asked to "map this codebase for OpenSpec", or when onboarding to a brownfield codebase.
 ---
 
 ## What I do
@@ -64,27 +64,38 @@ Combine findings into a structured summary:
 
 ### Step 5 — Suggest config.yaml seed
 
-If `openspec/config.yaml` does not exist, suggest seed content based on discovered patterns:
+If `openspec/config.yaml` does not exist, suggest seed content based on discovered patterns. Use the official OpenSpec config format (`schema`, `context`, `rules`) plus the `toolkit:` namespace for OpenSpec Toolkit settings:
 
 ```yaml
-# Suggested openspec/config.yaml based on codebase analysis
-project:
-  name: <detected project name>
-  language: <detected language>
-  framework: <detected framework>
+# openspec/config.yaml
+schema: spec-driven
 
-conventions:
-  auth: <detected auth pattern>
-  routing: <detected routing convention>
-  orm: <detected ORM>
-  naming: <detected naming patterns>
+context: |
+  Tech stack: <detected language>, <detected framework>
+  Auth: <detected auth pattern>
+  ORM: <detected ORM>
+  Routing: <detected routing convention>
+  Naming: <detected naming patterns>
+
+rules:
+  specs:
+    - Reference existing patterns before inventing new ones
+  tasks:
+    - Include testable acceptance criteria (Given/When/Then)
+
+# OpenSpec Toolkit settings (optional)
+toolkit:
+  security-scan: true        # false to skip security pass in post-apply
+  tdd-enforce: auto           # auto | always | never
+  custom-secret-patterns: []  # additional regex patterns for secret detection
+  skip-quality-patterns: []   # file patterns to exclude from quality scans
 ```
 
 Write this suggestion to the conversation output — do NOT write the file automatically. Let the user review and adjust before saving.
 
 ### Step 6 — Save key findings to memory
 
-Save the codebase map summary to memory so future sessions don't need to re-derive it.
+Save the codebase map summary to Claude Code's auto-memory system (write a memory file to the `.claude/projects/` memory directory) so future sessions don't need to re-derive it. Include the auth strategy, routing convention, ORM, and key file paths.
 
 ## When to use me
 

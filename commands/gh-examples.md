@@ -1,5 +1,6 @@
 ---
 description: Find real-world usage examples on GitHub
+argument-hint: "<search query>"
 allowed-tools: ["mcp__gh_grep__*"]
 ---
 

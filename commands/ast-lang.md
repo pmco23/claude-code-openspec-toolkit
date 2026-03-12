@@ -1,5 +1,6 @@
 ---
 description: Language-scoped AST search
+argument-hint: "<lang> <pattern>"
 allowed-tools: ["mcp__ast-grep__*"]
 ---
 

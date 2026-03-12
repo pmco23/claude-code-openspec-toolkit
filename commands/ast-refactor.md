@@ -1,5 +1,6 @@
 ---
 description: Find all sites matching a refactoring target pattern
+argument-hint: "<refactoring pattern>"
 allowed-tools: ["mcp__ast-grep__*"]
 ---
 

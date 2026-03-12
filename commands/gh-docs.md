@@ -1,5 +1,6 @@
 ---
 description: Official docs (Context7) + real-world usage (GitHub) combined
+argument-hint: "<library or API topic>"
 allowed-tools: ["mcp__gh_grep__*", "mcp__context7__*"]
 ---
 

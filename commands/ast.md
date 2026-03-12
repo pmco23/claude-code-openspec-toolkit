@@ -1,5 +1,6 @@
 ---
 description: Structural AST search with ast-grep pattern
+argument-hint: "<ast-grep pattern>"
 allowed-tools: ["mcp__ast-grep__*"]
 ---
 

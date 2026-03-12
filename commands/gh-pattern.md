@@ -1,5 +1,6 @@
 ---
 description: Find how a specific code pattern is used across GitHub projects
+argument-hint: "<code pattern>"
 allowed-tools: ["mcp__gh_grep__*"]
 ---
 

@@ -1,5 +1,6 @@
 ---
 description: Look up docs for a library using Context7
+argument-hint: "<library or topic>"
 allowed-tools: ["mcp__context7__*"]
 ---
 

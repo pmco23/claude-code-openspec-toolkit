@@ -1,11 +1,22 @@
 ---
 name: post-apply
-description: Combined quality gate after implementing an OpenSpec change. Runs spec-review compliance check, security scan, and code quality audit, then produces a single go/no-go report. Use after /opsx:apply and before archiving, or when asked to "review and prepare to archive" a change.
+description: This skill runs a combined quality gate after implementing an OpenSpec change — spec-review compliance check, security scan, and code quality audit — then produces a single go/no-go report. This skill should be used after /opsx:apply and before archiving, when asked to "review and prepare to archive" a change, or as a final quality gate before opening a PR. For a lighter review without the security scan, use the spec-review skill instead.
 ---
 
 ## What I do
 
 After implementing an OpenSpec change, run a combined quality gate that checks spec compliance, security, and code quality in one pass. Produces a single go/no-go verdict.
+
+**Note:** This is the full quality gate. For a lighter review (spec compliance + code quality only, no security scan), use the `spec-review` skill instead.
+
+### Step 0 — Load project settings
+
+Check if `openspec/config.yaml` exists and has a `toolkit:` section. If it does, read the toolkit settings and apply overrides:
+- If `security-scan: false`, skip Pass 2 entirely
+- If `custom-secret-patterns` has entries, add them to the security scan patterns
+- If `skip-quality-patterns` has entries, exclude matching files from the code quality scan
+
+If the file does not exist or has no `toolkit:` section, use defaults (all passes enabled, no custom patterns).
 
 ### Pass 1 — Spec compliance (tasks.md verification)
 

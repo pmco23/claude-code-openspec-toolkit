@@ -43,12 +43,25 @@ This chains documentation lookup, GitHub solutions, AST search, and error handli
 
 ## TDD discipline
 
-During `/opsx:apply`, follow red-green-refactor when tasks.md has testable acceptance criteria:
-1. **Red** — Write a failing test for the task's acceptance criteria first
-2. **Green** — Implement the minimum code to make the test pass
+Before implementing, load the `test-scaffold` skill to generate test stubs from tasks.md:
+"Load the test-scaffold skill and scaffold tests for the `<change-name>` change."
+
+Then follow red-green-refactor when tasks.md has testable acceptance criteria:
+1. **Red** — Run the scaffolded tests; they should all fail
+2. **Green** — Implement the minimum code to make each test pass
 3. **Refactor** — Clean up only after green, without changing behavior
 
 This applies especially to tasks with clear input/output expectations. Skip TDD for pure config changes, migrations, or UI-only tasks where automated testing adds no value.
+
+TDD enforcement can be configured per-project via the `toolkit:` section in `openspec/config.yaml` (included in the `pre-propose` config seed).
+
+## Per-project settings
+
+Toolkit settings live in `openspec/config.yaml` under the `toolkit:` key, alongside OpenSpec's own `schema`, `context`, and `rules`. The `pre-propose` skill includes these settings in its config seed suggestion. Options:
+- `security-scan`: enable/disable security pass in `post-apply`
+- `tdd-enforce`: `auto` | `always` | `never`
+- `custom-secret-patterns`: additional regex patterns for secret detection
+- `skip-quality-patterns`: file patterns to exclude from quality scans
 
 ## Multi-step tasks
 

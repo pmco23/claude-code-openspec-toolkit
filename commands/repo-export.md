@@ -1,16 +1,14 @@
 ---
 description: Export a full repomix XML snapshot to disk
-allowed-tools: ["Bash"]
+argument-hint: "[output path]"
+allowed-tools: ["mcp__repomix__*"]
 ---
 
-Export the current working directory with the Repomix CLI.
+Export the current working directory using the repomix MCP tool `pack_codebase`.
 
-If `$ARGUMENTS` is provided, use it as the output path; otherwise default to `./repomix-output.xml`.
+Call `pack_codebase` with:
+- `directory`: the current working directory (absolute path)
+- `compress`: false
+- `style`: "xml"
 
-Ensure the destination directory exists, then run:
-
-```
-npx -y repomix@latest --style xml -o <path>
-```
-
-Report the final output path and the key metrics from the Repomix CLI summary.
+Report the output file path and the key metrics (total files, total tokens) from the response.

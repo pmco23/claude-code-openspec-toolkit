@@ -1,12 +1,12 @@
 # OpenSpec Toolkit — Claude Code Plugin
 
-Opinionated Claude Code plugin for spec-driven development with [OpenSpec](https://github.com/openspec-dev/openspec). Provides AST search, GitHub code search, documentation lookup, codebase analysis, and spec review.
+Opinionated Claude Code plugin for spec-driven development with [OpenSpec](https://github.com/Fission-AI/OpenSpec). Provides AST search, GitHub code search, documentation lookup, codebase analysis, and spec review.
 
 ## Prerequisites
 
-- **Node.js** 18+ (for repomix and context7 via npx)
+- **Node.js** 20.19.0+ (for repomix and context7 via npx)
 - **Docker** (for ast-grep MCP server)
-- **context7 plugin** installed separately (`claude plugin install @anthropic/context7` or equivalent)
+- **context7 plugin** installed separately (`claude plugin install github:anthropics/context7` or equivalent)
 
 ## Installation
 
@@ -29,6 +29,20 @@ claude plugin install github:pemcoliveira/claude-code-openspec-toolkit
 | `repomix` | Codebase export to XML | npx stdio |
 
 Context7 is expected as a separate plugin and is not bundled here.
+
+## Hooks (3)
+
+| Hook | Event | Purpose |
+|------|-------|---------|
+| `pre-apply-guard` | PreToolUse | Warns if `/opsx:apply` runs without `config.yaml` or with vague acceptance criteria |
+| `pre-archive-guard` | PreToolUse | Warns if archiving without running a quality review first |
+| `session-context` | SessionStart | Auto-detects active OpenSpec change and injects context into the session |
+
+## Agents (1)
+
+| Agent | Purpose |
+|-------|---------|
+| `review-agent` | Read-only code review (Grep, Glob, ast-grep only — cannot modify files) |
 
 ## Commands (17)
 
@@ -74,7 +88,7 @@ Context7 is expected as a separate plugin and is not bundled here.
 | `/repo-export [path]` | Export full repomix XML snapshot to disk |
 | `/repo-export-slim [path]` | Export compressed repomix XML snapshot to disk |
 
-## Skills (4)
+## Skills (5)
 
 | Skill | Description | When to use |
 |-------|-------------|-------------|
@@ -82,6 +96,7 @@ Context7 is expected as a separate plugin and is not bundled here.
 | `post-apply` | Combined quality gate: spec compliance + security + code quality → go/no-go | After `/opsx:apply`, before archiving |
 | `debug-investigate` | Structured debugging: docs + GitHub + AST + error audit → diagnosis | When debugging a specific error or symptom |
 | `spec-review` | Two-pass review: tasks.md compliance + code quality audit | Lighter alternative to `post-apply` (no security scan) |
+| `test-scaffold` | Extract acceptance criteria from tasks.md, scaffold test files | Before implementing tasks during `/opsx:apply` for TDD |
 
 ### Usage
 
@@ -90,6 +105,7 @@ Load the pre-propose skill and map this codebase for OpenSpec
 Load the post-apply skill and review the add-dark-mode change
 Load the debug-investigate skill and debug this error: Cannot read properties of undefined
 Load the spec-review skill and review the add-dark-mode change
+Load the test-scaffold skill and scaffold tests for the add-dark-mode change
 ```
 
 ## Workflow
@@ -98,9 +114,10 @@ See `CLAUDE.md` for the full workflow rules that get loaded into every session. 
 
 1. Map the codebase: load the `pre-propose` skill (or run `/repo-auth`, `/repo-routes`, `/repo-models` manually)
 2. Propose changes with OpenSpec: `/opsx:propose`
-3. Implement: `/opsx:apply` (with TDD when tasks have testable criteria)
-4. Review: load the `post-apply` skill for go/no-go verdict
-5. Archive: `/opsx:archive`
+3. Scaffold tests: load the `test-scaffold` skill to generate test stubs from tasks.md
+4. Implement: `/opsx:apply` (with TDD — make scaffolded tests pass)
+5. Review: load the `post-apply` skill for go/no-go verdict
+6. Archive: `/opsx:archive`
 
 For debugging: load the `debug-investigate` skill with your error message.
 

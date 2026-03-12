@@ -58,9 +58,14 @@ Creates `proposal.md`, `specs/`, `design.md`, and `tasks.md` in one pass. Review
 Research the implementation approach — `/gh-docs` combines official docs with real-world GitHub usage.
 
 ```
+Load the test-scaffold skill and scaffold tests for the add-user-notification-preferences change
+```
+Scaffold test files with assertion placeholders from tasks.md acceptance criteria — the red phase of TDD.
+
+```
 /opsx:apply
 ```
-Implement in a **clean context window**. Works through `tasks.md` task by task.
+Implement in a **clean context window**. Works through `tasks.md` task by task, making scaffolded tests pass.
 
 ```
 Load the post-apply skill and review the add-user-notification-preferences change
@@ -105,9 +110,14 @@ Creates the change folder, then the first artifact (proposal). Review and edit.
 Step through each artifact: specs → design → tasks. Review between each step.
 
 ```
+Load the test-scaffold skill and scaffold tests for the add-notification-preferences change
+```
+Scaffold test files before implementing — sets up the red phase for TDD.
+
+```
 /opsx:apply
 ```
-Implement in a clean context.
+Implement in a clean context, making scaffolded tests pass.
 
 ```
 /opsx:verify

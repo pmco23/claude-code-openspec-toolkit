@@ -1,6 +1,6 @@
 ---
 name: debug-investigate
-description: Structured debugging workflow that chains documentation lookup, GitHub solutions search, AST code search, and error handling audit to diagnose an error or symptom. Use when debugging a specific error message, exception, or unexpected behavior.
+description: This skill runs a structured debugging workflow that chains documentation lookup, GitHub solutions search, AST code search, and error handling audit to diagnose an error or symptom. This skill should be used when debugging a specific error message, exception, or unexpected behavior, when /c7-fix or /gh-fix alone aren't enough, or when asked to "investigate" or "diagnose" an error.
 ---
 
 ## What I do
@@ -23,6 +23,8 @@ Use the context7 MCP tools (`resolve-library-id` then `query-docs`) to look up:
 
 Summarize what the docs say about this error.
 
+**Fallback:** If context7 MCP tools are unavailable, use WebSearch to look up the official documentation for the relevant library and error type.
+
 ### Step 3 — Find real-world solutions
 
 Use the gh_grep MCP tool (`searchGitHub`) to search for:
@@ -31,6 +33,8 @@ Use the gh_grep MCP tool (`searchGitHub`) to search for:
 - Related issue titles and fix commits
 
 Summarize the most relevant solutions found.
+
+**Fallback:** If gh_grep MCP tool is unavailable, use WebSearch to find GitHub issues, Stack Overflow threads, and community solutions for the error.
 
 ### Step 4 — Locate the code in the codebase
 
