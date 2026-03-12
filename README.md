@@ -13,14 +13,15 @@ Opinionated Claude Code plugin for spec-driven development with [OpenSpec](https
 ### From GitHub (marketplace)
 
 ```bash
-claude plugin install openspec-toolkit@pmco23/claude-code-openspec-toolkit
+claude plugin marketplace add pmco23/claude-code-openspec-toolkit
+claude plugin install openspec-toolkit@openspec-toolkit
 ```
 
 ### From a local clone
 
 ```bash
 git clone https://github.com/pmco23/claude-code-openspec-toolkit.git
-claude plugin install /path/to/claude-code-openspec-toolkit/plugins/openspec-toolkit
+claude plugin install ./claude-code-openspec-toolkit/plugins/openspec-toolkit
 ```
 
 ## MCP Servers

@@ -22,7 +22,8 @@ gh auth status    # must be authenticated
 From GitHub (marketplace):
 
 ```bash
-claude plugin install openspec-toolkit@pmco23/claude-code-openspec-toolkit
+claude plugin marketplace add pmco23/claude-code-openspec-toolkit
+claude plugin install openspec-toolkit@openspec-toolkit
 ```
 
 Or from a local clone:
